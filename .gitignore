@@ -1,0 +1,46 @@
+# IntelliJ IDEA projects
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# JAR files
+*.jar
+
+# Generated files
+out/
+build/
+
+# Log files
+logs/
+
+# System files and directories
+.DS_Store
+.git
+.hg
+.svn
+
+# User-specific files
+.idea_modules/
+.idea_schemas/
+
+# Gradle files
+.gradle/
+gradle/
+
+# Maven files
+.mvn/
+mvn/
+
+# SBT files
+.sbt/
+project/
+target/
+
+# Eclipse files
+.project
+.classpath
+.settings/
+
+# NetBeans files
+nbproject/

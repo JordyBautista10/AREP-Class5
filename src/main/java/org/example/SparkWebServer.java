@@ -1,8 +1,13 @@
 package org.example;
 
+import spark.Spark;
+
+import java.nio.file.Paths;
+
 import static java.lang.Math.*;
 import static spark.Spark.port;
 import static spark.Spark.get;
+import static spark.Spark.*;
 
 
 
@@ -10,6 +15,9 @@ public class SparkWebServer {
 
     public static void main(String... args){
         port(getPort());
+
+        staticFileLocation( "public");
+
         get("cliente", (req,res) -> {
             res.type("text/html");
             return page();
@@ -26,7 +34,7 @@ public class SparkWebServer {
             String path = req.contextPath();
             Float x = Float.parseFloat(req.queryParams("id"));
             res.type("text/html");
-            return "Sin(" + x + ") = " + cos(x);
+            return "Cos(" + x + ") = " + cos(x);
         });
 
         get("palindromo", (req,res) -> {
@@ -39,7 +47,13 @@ public class SparkWebServer {
             Double x = Double.valueOf(req.queryParams("x"));
             Double y = Double.valueOf(req.queryParams("y"));
             res.type("text/html");
-            return " La magnitud de (" + x + ", " + y +") es:" + sqrt( (x*x)  +(y*y));
+            return " La magnitud de (" + x + ", " + y +") es: " + sqrt( (x*x)  +(y*y));
+        });
+
+        after((request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.header("Access-Control-Request-Method", "GET, POST, PUT, DELETE, OPTIONS");
+            response.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
         });
 
     }
