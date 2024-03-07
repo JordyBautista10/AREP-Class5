@@ -52,7 +52,7 @@ public class SparkWebServer {
 
     }
 
-    private static int getPort() {
+    public static int getPort() {
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));
         }
@@ -75,7 +75,7 @@ public class SparkWebServer {
         return true;
     }
 
-    private static String page(){
+    public static String page(){
         return "<html>\n" +
                 "    <head>\n" +
                 "        <title>Form Example</title>\n" +
