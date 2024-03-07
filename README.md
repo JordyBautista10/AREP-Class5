@@ -6,8 +6,7 @@ Este taller se realizó con la finalidad de explorar y familiarizarse con el uso
 - Palíndroma: Recibe una cadena de texto y devuelve si es o no una palabra palíndroma, es decir, que se lee igual de derecha a izquierda y viceversa.
 - Magnitud: Recibe los dos valores que componen un vector en 2D y retorna la magnitud de este vector, es decir, la raíz de la suma de los valores al cuadrado.
 
-Además, también se realizó para aprender una herramienta de contenedores (docker), tanto su funcionamiento, configuración y utilidad dentro de la industria.
-![img.png](img/img0.png)
+Además, también se realizó para aprender una herramienta de contenedores (docker), tanto su funcionamiento, configuración y utilidad dentro de la industria. El repositorio con la imagen correspondiente de este proyecto es `emptycorpse/modularizacion`
 
 ### Prerequisitos
 
@@ -91,16 +90,40 @@ Este método retorna la página del cliente, esto se realizó como prueba de lo 
 
 
 ### Uso del framework para desarrollador
-Si se quiere añadir un nuevo endpoint para configurar un comportamiento distinto, se debe acceder al la clase ControllerSpringBoot y añadir un nuevo metodo donde se indique cuál es el nuevo endpoint a traves de la variable dentro de la anotacion @ResuestMapping. Configure el comportamiento del metodo, la respuesta debe estar en formato byte[], pues es de la forma que JordySpark puede interpretar la informacion recibida para imprimirla
+Si se quiere añadir un nuevo endpoint para configurar un comportamiento distinto, se debe acceder a la clase SparkWebServer y una vez adentro, en el método main, debe añadir una nueva función lambda con el nombre de la petición y dentro, configurar el comportamiento y la salida:
 
+![img.png](img/img_5.png)
 
-Si quiere añadir otras anotaciones para definir nuevos comportamientos, añadalas en la carpeta annotations y con la estructura de anotacion de la siguiente forma:
+Si quiere añadir un nuevo archivo html, js, css e incluso imagenes, deberá añadirlo a la carpeta public. Para este ejemplo se añadio una imagen con nombre "Valhalla.png", de forma que si se sonsulta esta imagen se obtiene:
 
+![img_6.png](img/img_6.png)
 
+### Uso de Docker
 
-Si desea que la anotacion anterior sea cargada por MicroSpringBoot, entonces modifique el metodo pojoCargue(). En la siguiente imagen se muestra de color amarillo, si desea añadir una nueva anotacion de clase, entonces añada "|| c.isAnnotationPresent( [nuevaAnotacion].class)", por otro lado si desea añadir una nueva anotacion de metodo, agreguela en la anotacion de color rojo de la misma forma "|| c.isAnnotationPresent( [nuevaAnotacion].class)":
+Primero se crea un archivo con el nombre `Dockerfile`, el cual va a contener la configuración de la imagen. En la siguiente imagen se puede ver la configuración de este archivo para el proyecto actual, el cual define la versión de jdk que usará, crea una carpeta, configura el puerto, copia los archivos de las clases compiladas y sus dependencias a la carpeta creada y finalmente ejecuta el proyecto
 
+![img.png](img.png)
 
+Una vez se tiene el `Dockerfile` se puede usar el siguiente comando para crear la imagen(debe tener docker ejecutandose y ya haber compilado):
+~~~
+docker build --tag emptycorpse/modularizacion .
+~~~
+Ahora, hay que crear un repositorio de DockerHub para alojar esta imagen, siga los siguientes pasos:
+
+![img_1.png](img_1.png)
+
+Asigenele un nombre de tal forma que quede igual al de la imagen, en este caso la imagen se llama `emptycorpse/modularizacion`
+
+![img_2.png](img_2.png)
+
+Finalmente, ya que se tiene la imagen y el repositorio, con el siguiente comando la imagen se subira al repositorio(debe tener la sesion iniciada en la aplicacion de escritorio):
+~~~
+docker push emptycorpse/modularizacion
+~~~
+Si descarga esta imagen, deberá correrla con el siguiente comando(todos los links dentro de este archivo deben seguir funcionando):
+~~~
+docker run -d -p 46000:4567 --name modularizacion emptycorpse/modularizacion
+~~~
 ## Versioning
 
 Para el versionamiento se usó [Git](https://git-scm.com). Si necesita volver en alguna versión del código, visite los commits.

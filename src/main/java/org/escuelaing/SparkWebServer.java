@@ -7,7 +7,7 @@ import static spark.Spark.*;
 
 public class SparkWebServer {
 
-    public static void main(String... args){
+    public static void main(String[] args){
         port(getPort());
 
         staticFileLocation( "public");
