@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SparkWebServerTest {
 
+    static SparkWebServer server ;
+
     @Test
     public void pageTestHtml(){
         assertEquals(SparkWebServer.page().substring(0,6), "<html>");
