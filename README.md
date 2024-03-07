@@ -102,7 +102,7 @@ Si quiere añadir un nuevo archivo html, js, css e incluso imagenes, deberá añ
 
 Primero se crea un archivo con el nombre `Dockerfile`, el cual va a contener la configuración de la imagen. En la siguiente imagen se puede ver la configuración de este archivo para el proyecto actual, el cual define la versión de jdk que usará, crea una carpeta, configura el puerto, copia los archivos de las clases compiladas y sus dependencias a la carpeta creada y finalmente ejecuta el proyecto
 
-![img.png](img.png)
+![img.png](img/img_7.png)
 
 Una vez se tiene el `Dockerfile` se puede usar el siguiente comando para crear la imagen(debe tener docker ejecutandose y ya haber compilado):
 ~~~
@@ -110,11 +110,11 @@ docker build --tag emptycorpse/modularizacion .
 ~~~
 Ahora, hay que crear un repositorio de DockerHub para alojar esta imagen, siga los siguientes pasos:
 
-![img_1.png](img_1.png)
+![img_1.png](img/img_9.png)
 
 Asigenele un nombre de tal forma que quede igual al de la imagen, en este caso la imagen se llama `emptycorpse/modularizacion`
 
-![img_2.png](img_2.png)
+![img_2.png](img/img_8.png)
 
 Finalmente, ya que se tiene la imagen y el repositorio, con el siguiente comando la imagen se subira al repositorio(debe tener la sesion iniciada en la aplicacion de escritorio):
 ~~~
